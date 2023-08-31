@@ -1,17 +1,19 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.*;
 
 class Main {
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
         List<String> arr = new ArrayList<>();
 
-        in.nextLine();
 
         for (int i = 0; i < n; i++) {
-            String str = in.nextLine();
+            String str = br.readLine();
             if (arr.contains(str)) {
                 continue;
             } else {
@@ -34,9 +36,6 @@ class Main {
         for (String s : arr) {
             System.out.println(s);
         }
-
-
-
 
 
     }
