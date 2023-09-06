@@ -11,6 +11,7 @@ class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
         int n;
         while (true) {
             st = new StringTokenizer(br.readLine());
@@ -25,9 +26,11 @@ class Main {
             for (int i = 0; i < n; i++) {
                 histogram[i] = Integer.parseInt(st.nextToken());
             }
-            System.out.println(getArea(0, n - 1));
+            sb.append(getArea(0, n - 1)).append('\n');
             histogram = null;
+
         }
+        System.out.println(sb.toString());
 
 
 
