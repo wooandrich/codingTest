@@ -13,15 +13,16 @@ dy = [0,1,-0,-1]
 ans = 0
 
 # dfs 이용해 바이러스를 사방으로 퍼지게 하기
-def virus(x,y):
+def virus(x,y,check):
+    check[x][y] = True
     for i in range(4):
         nx = x + dx[i]
         ny = y + dy[i]
         if nx >= 0 and nx < n and ny >= 0 and ny < m:
-            if temp[nx][ny] == 0:
+            if temp[nx][ny] == 0 and not check[nx][ny]:
                 # 해당위치에 바이러스 배치 후 재귀
                 temp[nx][ny] = 2
-                virus(nx,ny)
+                virus(nx,ny,check)
 
 # 현재 맵에서 안전 영역의 크기를 계산하기 함수
 def get_score():
@@ -41,10 +42,11 @@ def dfs(count):
             for j in range(m):
                 temp[i][j] = arr[i][j]
         # 각 바이러스의 위치에서 전파 진행
+        check = [[False] * m for _ in range(n)]
         for i in range(n):
             for j in range(m):
-                if temp[i][j] == 2:
-                    virus(i,j)
+                if temp[i][j] == 2 and not check[i][j]:
+                    virus(i,j,check)
         # 안전 영역의 최댓값 계산
         ans = max(ans, get_score())
         return
