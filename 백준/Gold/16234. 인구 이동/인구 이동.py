@@ -45,7 +45,7 @@ def dfs(x,y,index):
     # 연합 국가 끼리 인구를 분배
     for i,j in united:
         board[i][j] = summary // count
-    return count
+    
 
 
 
@@ -62,6 +62,7 @@ while True:
             if check[i][j] == -1: # 해당 나라가 처리되지않았다면:
                 dfs(i,j,index)
                 index += 1
+    # 모든 인구 이동이 끝나면 dfs 함수로 안 갔을때
     if index == n * n:
         break
     ans += 1
