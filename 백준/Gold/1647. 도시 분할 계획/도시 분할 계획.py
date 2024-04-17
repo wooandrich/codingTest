@@ -30,7 +30,7 @@ for i in range(m):
 
 edges.sort()
 
-max_cost = 0
+last_cost = 0
 ans = 0
 
 for edge in edges:
@@ -38,5 +38,5 @@ for edge in edges:
     if find_parent(parent,a) != find_parent(parent,b):
         union_parent(parent,a,b)
         ans += cost
-        max_cost = max(cost,max_cost)
-print(ans - max_cost)
+        last_cost = cost
+print(ans - last_cost)
