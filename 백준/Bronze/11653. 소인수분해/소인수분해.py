@@ -8,14 +8,14 @@ n = int(input())
 if n == 1:
     print()
 else:
-    result = []
     now = 2
+    end = int(n**(1/2))
 
-    while now <= n:
-        if n % now == 0:
-            result.append(now)
-            n //= now
-        else:
+    while now <= end:
+        if n % now != 0:
             now += 1
-    for num in result:
-        print(num)
+        else:
+            print(now)
+            n //= now
+    if n > 1:
+        print(n)
