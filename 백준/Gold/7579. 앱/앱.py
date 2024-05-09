@@ -21,8 +21,4 @@ for i in range(1,n+1):
 
         if dp[i][j] >= m:
             result = min(result, j)
-if m != 0:
-    print(result)
-else:
-    print(0)
-    
+print(result)
