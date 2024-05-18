@@ -9,7 +9,7 @@ n = int(input())
 prime = [True for i in range(n+1)]
 prime[1] = False
 
-for i in range(2, int(math.sqrt(n) + 1)):
+for i in range(2, math.isqrt(n) + 1):
     if prime[i]:
         j = 2
         while i*j <= n:
