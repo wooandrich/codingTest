@@ -10,7 +10,7 @@ def dfs(start, dist):
     return
 
 
-
+input = sys.stdin.readline
 
 v = int(input())
 
