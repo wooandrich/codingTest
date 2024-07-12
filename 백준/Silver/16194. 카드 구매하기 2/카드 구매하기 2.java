@@ -16,16 +16,11 @@ class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         int[] dp = new int[n+1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[1] = arr[1];
 
-        for (int i = 2; i <= n; i++) {
-            for(int j=1; j < i; j++) {
-                if(i % j == 0){
-                    dp[i] = Math.min(dp[i] ,Math.min(arr[i], Math.min(dp[j] + arr[i-j], dp[j] * (i/j))));
-                }else {
-                    dp[i] = Math.min(dp[i], Math.min(arr[i], dp[j] + arr[i - j]));
-                }
+        for (int i = 1; i <= n; i++) {
+            dp[i] = arr[i];
+            for(int j=1; j <= i; j++) {
+                dp[i] = Math.min(dp[i], dp[i-j] + arr[j]);
             }
         }
         System.out.println(dp[n]);
