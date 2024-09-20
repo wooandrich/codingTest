@@ -1,15 +1,26 @@
 import sys
-from itertools import combinations
 
-n,m = map(int, sys.stdin.readline().rstrip().split())
+input = sys.stdin.readline
 
+def recur(number):
+    if number == m:
+        print(*arr)
+        return
+
+    for i in range(1,n+1):
+        if i in arr:
+            continue
+        if len(arr) > 0:
+            temp = arr[-1]
+            if i < temp:
+                continue
+
+        arr.append(i)
+        recur(number + 1)
+        arr.pop()
+
+n,m = map(int, input().split())
 arr = []
 
-for i in range(1, n+1):
-    arr.append(i)
+recur(0)
 
-ans = list(combinations(arr,m))
-
-for a in ans:
-    data = list(a)
-    print(" ".join(map(str, data)))
