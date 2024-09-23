@@ -1,20 +1,26 @@
+import sys
+
+sys.setrecursionlimit(100000)
+
+input = sys.stdin.readline
+
+def recur(idx, price):
+    global ans
+
+    if idx == n:
+        ans = max(ans, price)
+        return
+    if idx + interview[idx][0] <= n:
+        recur(idx + interview[idx][0], price + interview[idx][1])
+    recur(idx + 1, price)
+
+
 n = int(input())
-t = []
-p = []
-max_value = 0
 
-for _ in range(n):
-    x,y = map(int, input().split())
-    t.append(x)
-    p.append(y)
+interview = [list(map(int, input().split())) for _ in range(n)]
 
-dp = [0] * (n+1)
+ans = 0
 
-for i in range(n-1, -1, -1):
-    time = t[i] + i
-    if time <= n:
-        dp[i] = max(p[i] + dp[time], max_value)
-        max_value = dp[i]
-    else:
-        dp[i] = max_value
-print(max_value)
+recur(0,0)
+
+print(ans)
