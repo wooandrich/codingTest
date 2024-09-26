@@ -1,15 +1,16 @@
 import sys
+sys.setrecursionlimit(1000000000)
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline().rstrip())
+n = int(input())
 
-arr = [0] + list(map(int,sys.stdin.readline().rstrip().split()))
+arr = list(map(int, input().split()))
 
-dp = [1] * (n+1)
+dp = [1 for _ in range(n)]
 
-for i in range(1,n+1):
-    for j in range(1,i+1):
+for i in range(n):
+    for j in range(i):
         if arr[i] > arr[j]:
-            dp[i] = max(dp[i], dp[j] + 1)
+            dp[i] = max(dp[i], dp[j]+1)
+
 print(max(dp))
-
-
