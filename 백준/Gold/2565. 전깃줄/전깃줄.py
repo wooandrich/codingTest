@@ -1,12 +1,12 @@
 import sys
+sys.setrecursionlimit(1000000000)
+input = sys.stdin.readline
 
-n = int(sys.stdin.readline().rstrip())
-arr = [[0] * 2] * n
-dp = [1] * n
+n = int(input())
 
+arr = [list(map(int, input().split())) for _ in range(n)]
 
-for i in range(n):
-    arr[i] = list(map(int,sys.stdin.readline().rstrip().split()))
+dp = [1 for _ in range(n)]
 
 arr.sort()
 
