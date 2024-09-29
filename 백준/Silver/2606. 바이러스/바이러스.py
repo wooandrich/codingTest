@@ -1,37 +1,29 @@
 import sys
-from collections import deque
 
-n = int(sys.stdin.readline().rstrip())
+input = sys.stdin.readline
 
-m = int(sys.stdin.readline().rstrip())
+n = int(input())
+m = int(input())
 
 graph = [[] for _ in range(n+1)]
-visited = [False] * (n+1)
-
-ans = 0
+visited = [0 for _ in range(n+1)]
 
 for _ in range(m):
-    x,y = map(int,sys.stdin.readline().rstrip().split())
-    graph[x].append(y)
-    graph[y].append(x)
-
-
-def bfs(v):
-    global ans
-
-    q = deque()
-    q.append(v)
-    visited[v] = True
-
-    while q:
-        now = q.popleft()
-        for temp in graph[now]:
-            if not visited[temp]:
-                visited[temp] = True
-                q.append(temp)
-                ans += 1
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
 
 
 
-bfs(1)
-print(ans)
+def recur(node):
+    visited[node] = 1
+
+    for nxt in graph[node]:
+        if visited[nxt] == 1:
+            continue
+        recur(nxt)
+
+
+recur(1)
+
+print(sum(visited) - 1)
