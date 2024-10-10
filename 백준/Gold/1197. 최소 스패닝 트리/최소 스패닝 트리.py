@@ -1,35 +1,49 @@
 import sys
-import heapq
 
 input = sys.stdin.readline
+sys.setrecursionlimit(10**9)
 
-# 프림
+# 크루스칼
+
+def _union(a,b):
+    a = _find(a)
+    b = _find(b)
+
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
+
+def _find(a):
+    if parent[a] == a:
+        return a
+    else:
+        parent[a] = _find(parent[a])
+        return parent[a]
+
 
 n,m = map(int,input().split())
 
-graph = [[] for _ in range(n+1)]
-visited = [0 for _ in range(n+1)]
+links = [list(map(int,input().split())) for i in range(m)]
+links.sort(key=lambda x:x[2])
+parent = [i for i in range(n+1)]
 
-for _ in range(m):
-    a,b,c = map(int,input().split())
-    graph[a].append([c,b])
-    graph[b].append([c,a])
-
-q = [[0,1]]
 ans = 0
-cnt = 0
 
-while q:
-    if cnt == n:
-        break
-        
-    weight, node = heapq.heappop(q)
+for i in range(m):
+    a = links[i][0]
+    b = links[i][1]
+    weight = links[i][2]
 
+    a = _find(a)
+    b = _find(b)
 
-    if visited[node] == 0:
-        visited[node] = 1
+    if a == b:
+        continue
+    else:
+        _union(a,b)
         ans += weight
-        cnt += 1
-        for nxt in graph[node]:
-            heapq.heappush(q,nxt)
 print(ans)
+
+
+
