@@ -10,7 +10,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
 
         int start = 2;
-        int end = n;
+        int end = (int)Math.sqrt(n);
 
         if (n == 1) {
 
@@ -22,6 +22,9 @@ public class Main {
                     sb.append(start).append("\n");
                     n = n / start;
                 }
+            }
+            if (n > 1) {
+                sb.append(n).append("\n");
             }
         }
         System.out.println(sb.toString());
