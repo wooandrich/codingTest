@@ -13,20 +13,22 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int ans = 0;
+        int ans = n;
 
         for (int num : arr) {
             boolean flag = true;
-            if (num == 1) continue;
-            for (int i = 2; i < num; i++) {
-                if (num % i == 0) {
-                    flag = false;
-                    break;
+            if (num == 1) {
+                ans--;
+            } else {
+                for (int i = 2; i <= (int) Math.sqrt(num); i++) {
+                    if (num % i == 0) {
+                        ans--;
+                        break;
+                    }
                 }
+
             }
-            if (flag) {
-                ans++;
-            }
+
         }
         System.out.println(ans);
 
