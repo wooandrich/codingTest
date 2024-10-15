@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int n;
-    static int m;
-    static int[] arr;
-    static boolean[] visited;
+    static int n,m;
+    static List<Integer> arr = new ArrayList<>();
+    static StringBuilder sb = new StringBuilder();
+    static int[] temp;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -13,27 +13,44 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        arr = new int[n];
-        visited = new boolean[n];
         st = new StringTokenizer(br.readLine());
+        temp = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            temp[i] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(arr);
 
-        for (int i = 0; i < n; i++) {
-            dfs(String.valueOf(arr[i]),i, 1);
-        }
+        Arrays.sort(temp);
+
+        recur(0);
+
+        System.out.println(sb);
+
+
+
+
+
+
+
     }
-    static private void dfs(String str,int now, int count) {
-        if (count == m) {
-            System.out.println(str);
-        }
-        for (int i = now + 1; i < arr.length; i++) {
-            if (!visited[i]) {
-                dfs(str + " " + String.valueOf(arr[i]),i, count + 1);
-            }
-        }
 
+    static void recur(int num) {
+        if (num == m) {
+            arr.stream().forEach(x -> sb.append(x).append(" "));
+            sb.append('\n');
+            return;
+        }
+        for (int i : temp) {
+            if (arr.contains(i)) {
+                continue;
+            }
+            if (!arr.isEmpty()) {
+                if (arr.get(arr.size() - 1) > i) {
+                    continue;
+                }
+            }
+            arr.add(i);
+            recur(num + 1);
+            arr.remove(arr.size() - 1);
+        }
     }
 }
