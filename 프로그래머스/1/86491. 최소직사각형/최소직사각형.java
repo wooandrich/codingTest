@@ -1,27 +1,23 @@
 class Solution {
     public int solution(int[][] sizes) {
-        int answer = sizes[0][0] * sizes[0][1];
-        int x = sizes[0][0];
-        int y = sizes[0][1];
+        int answer = 0;
         
-        for(int i=1;i<sizes.length;i++){
-            int x1 = Math.max(x, sizes[i][0]);
-            int x2 = Math.max(y, sizes[i][0]);
+        int x = 0;
+        int y = 0;
+        
+        for (int[] s : sizes) {
+            int a = s[0];
+            int b = s[1];
             
-            int y1 = Math.max(y, sizes[i][1]);
-            int y2 = Math.max(x, sizes[i][1]);
+            a = Math.max(s[0], s[1]);
+            b = Math.min(s[0], s[1]);
             
-            if(x1 + y1 <= x2 + y2){
-                x = x1;
-                y = y1;
-                answer = x * y;
-            }else{
-                x = x2;
-                y = y2;
-                answer = x * y;
-            }
+            x = Math.max(x,a);
+            y = Math.max(y,b);
         }
-       
+        
+        answer = x * y;
+        
         return answer;
     }
 }
