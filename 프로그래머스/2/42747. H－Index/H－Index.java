@@ -1,35 +1,26 @@
 import java.util.*;
 class Solution {
     public int solution(int[] citations) {
-        Arrays.sort(citations);
         int answer = 0;
         
-        int left = 0;
-        int right = citations[citations.length - 1];
+        Arrays.sort(citations);
         
-        while (left <= right) {
-            int mid = (left + right) / 2;
+        for (int i=0;i<citations[citations.length - 1];i++) {
+            int low = 0;
+            int high = 0;
+            int h = i;
             
-            if (solve(citations, mid)){
-                answer = Math.max(answer, mid);
-                left = mid + 1;
-            } else {
-                right = mid - 1;
+            for (int j=0;j<citations.length;j++) {
+                if (citations[j] >= h) high++;
+                
+            }
+            low = citations.length - high;
+            if (high >= h && low <= h) {
+                answer = Math.max(answer, h);
             }
         }
         
+        
         return answer;
-    }
-    static private boolean solve(int[] arr, int h) {
-        int low = 0;
-        int high = 0;
-        
-        for (int k : arr) {
-            if (k >= h) high++;
-            else low++;
-        }
-        if (high >= h && low < h) return true;
-        
-        return false;
     }
 }
