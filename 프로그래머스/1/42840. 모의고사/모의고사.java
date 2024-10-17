@@ -1,33 +1,31 @@
 import java.util.*;
 class Solution {
-    public List<Integer> solution(int[] answers) {
+    public int[] solution(int[] answers) {
+        int[] cnt = new int[3];
+        
+        int[] a = new int[]{1,2,3,4,5};
+        int[] b = new int[]{2,1,2,3,2,4,2,5};
+        int[] c = new int[]{3,3,1,1,2,2,4,4,5,5};
+        
+        int one = 0;
+        int two = 0;
+        int three = 0;
+        
+        for (int i=0;i<answers.length;i++) {
+            int answer = answers[i];
+            if (a[i % a.length] == answer) one++;
+            if (b[i % b.length] == answer) two++;
+            if (c[i % c.length] == answer) three++;
+            
+        }
+        
+        int max_val = Math.max(one, Math.max(two, three));
+        
         List<Integer> answer = new ArrayList<>();
         
-        int[] one = new int[]{1,2,3,4,5};
-        int[] two = new int[]{2, 1, 2, 3, 2, 4, 2, 5};
-        int[] three = new int[]{3, 3, 1, 1, 2, 2, 4, 4, 5,5};
-        
-        int[] arr = new int[]{0,0,0};
-        
-        
-        for(int i = 0;i<answers.length;i++){
-            int a = one[i % one.length];
-            int b = two[i % two.length];
-            int c = three[i % three.length];
-            
-            int ans = answers[i];
-            
-            if(ans == a) arr[0]++;
-            if(ans == b) arr[1]++;
-            if(ans == c) arr[2]++;
-        }
-        
-        
-        int max = Math.max(arr[0], Math.max(arr[1], arr[2]));
-        
-        for(int i=0;i<3;i++){
-            if(arr[i] == max) answer.add(i+1);
-        }
+        if (max_val == one) answer.add(1);
+        if (max_val == two) answer.add(2);
+        if (max_val == three) answer.add(3);
         
         
         
@@ -35,9 +33,6 @@ class Solution {
         
         
         
-        
-        
-        
-        return answer;
+        return answer.stream().mapToInt(i -> i).toArray();
     }
 }
