@@ -19,7 +19,7 @@ def _find(a):
         return a
     else:
         parent[a] = _find(parent[a])
-        return _find(parent[a])
+        return parent[a]
 
 
 
