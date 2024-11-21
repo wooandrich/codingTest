@@ -4,7 +4,7 @@ import java.util.StringTokenizer
 
 fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
 
-    val name = readln()
+    val name = readLine()
 
     println(name + "??!")
 
