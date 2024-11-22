@@ -8,7 +8,7 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
     while (true) {
         val st = StringTokenizer(readLine() ?: break)
 
-        if (st.countTokens() < 2) break
+//        if (st.countTokens() < 2) break
 
         val a = st.nextToken().toInt()
         val b = st.nextToken().toInt()
