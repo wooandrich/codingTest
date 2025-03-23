@@ -1,21 +1,22 @@
+import java.util.*;
 class Solution {
     boolean solution(String s) {
+        boolean answer = true;
         
-        int cnt = 0;
-        
+        Queue<Integer> q = new LinkedList<>();
+
         char[] arr = s.toCharArray();
         
         for (char c : arr) {
             if (c == '(') {
-                cnt++;
+                q.add(1);
             } else {
-                if (cnt == 0) return false;
-                else cnt--;
+                if (q.isEmpty()) return false;
+                else q.poll();
             }
-        }
-        
-        return cnt == 0;
+            
+        }   
 
-
+        return true ? q.isEmpty() : false;
     }
 }
