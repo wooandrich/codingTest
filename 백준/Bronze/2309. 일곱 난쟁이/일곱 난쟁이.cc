@@ -2,38 +2,29 @@
 using namespace std;
 
 
-int n = 9, temp;
-vector<int> v;
+int a[9];
+
 int main() {
 
-    int cnt = 0;
+    for (int i=0;i<9;i++){
+        cin >> a[i];
+    }
+    sort(a, a+9);
 
-    int one,two;
+    do
+    {
+        /* code */
+        int sum = 0;
+        for (int i=0;i<7;i++) sum += a[i];
+        if (sum == 100) break;
+    } while (next_permutation(a, a+9));
+
+    for (int i=0;i<7;i++){
+        cout << a[i] << endl;
+    }
+    
 
     
-    for (int i=0;i<n;i++){
-        cin >> temp;
-        cnt += temp;
-        v.push_back(temp);
-    }
-
-    for (int i=0;i<n;i++){
-        for (int j = i+1;j<n;j++){
-            if (cnt - v[i] - v[j] == 100){
-                one = v[i];
-                two = v[j];
-                goto done;
-            }
-        }
-    }
-done:
-    sort(v.begin(), v.end());
-
-    for(int i:v) {
-        if (i == one || i == two) continue;
-
-        cout << i << endl;
-    }
 
 
 
