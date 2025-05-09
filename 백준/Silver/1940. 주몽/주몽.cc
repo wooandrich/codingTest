@@ -22,9 +22,23 @@ int main() {
 		v.push_back(temp);
 	}
 	
-	for (int i=0;i<n;i++){
-		for (int j=i+1;j<n;j++){
-			if(v[i] + v[j] == m) ans++;
+	sort(v.begin(), v.end());
+	
+	int s = 0;
+	int e = n-1;
+	
+	while (s < e) {
+		int mid = v[s] + v[e];
+		
+		if (mid == m) {
+			ans++;
+			s++;
+		}
+		else if (mid < m) {
+			s++;
+		}
+		else {
+			e--;
 		}
 	}
 	
