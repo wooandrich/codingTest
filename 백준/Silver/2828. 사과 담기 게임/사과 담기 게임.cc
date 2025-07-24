@@ -12,9 +12,6 @@ int visited[MAX][MAX];
 int n,m,ans,j,l,r;
 
 
-queue<int> q;
-
-
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -23,33 +20,26 @@ int main() {
 
     cin >> j;
 
+    l = 1;
+
     for (int i=0;i<j;i++) {
         int temp;
         cin >> temp;
 
-        q.push(temp);
-    }
+        r = l + m - 1;
 
-    l =1;
-    if (m > 1) r = l + m - 1;
-    else r = l;
+        if (temp >= l && temp <= r) continue;
 
-    while(q.size()) {
-        int k = q.front();
-        q.pop();
-
-        int cnt = min(abs(k - l), abs(k - r));
-        if (k >= l && k <= r) cnt = 0;
-        ans += cnt;
-        if (l > k) {
-            l -= cnt;
-            r -= cnt;
+        if (temp > l) {
+            ans += temp - r;
+            l += temp - r;
         } else {
-            l += cnt;
-            r += cnt;
+            ans += l - temp;
+            l = temp;
         }
-        
     }
+
+    
 
     cout << ans << '\n';
 
