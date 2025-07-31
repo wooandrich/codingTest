@@ -1,20 +1,18 @@
 import java.util.*;
 
-public class Solution {
+class Solution {
     public int solution(int n) {
-        int ans = 0;
+        int ret = 0;
 
-        while(n != 1){
-            if(n % 2 == 0){
-                n /= 2;
-            }
-            else{
-                n--;
-                ans++;
+        while (n != 1) {
+            if (n % 2 == 0) n /= 2;
+            else {
+                n -= 1;
+                ret++;
             }
         }
-        ans++;
 
-        return ans;
+
+        return ret + 1;
     }
 }
