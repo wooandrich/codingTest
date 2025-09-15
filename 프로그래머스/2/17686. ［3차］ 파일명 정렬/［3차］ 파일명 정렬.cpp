@@ -40,13 +40,8 @@ bool cmp(string a, string b) {
         }
     }
     
-    // 안전한 숫자 변환
-    if (!a_tempNum.empty()) {
-        a_num = stoi(a_tempNum);
-    }
-    if (!b_tempNum.empty()) {
-        b_num = stoi(b_tempNum);
-    }
+    a_num = stoi(a_tempNum);
+    b_num = stoi(b_tempNum);
     
     if (a_head == b_head) {
         return a_num < b_num;
