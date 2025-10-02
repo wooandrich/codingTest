@@ -2,7 +2,7 @@
 
 using namespace std;
 
-map<int,int> m;
+unordered_set<int> s;
 
 void recur(int cnt, int idx, vector<int> elements) {
     int result = 0;
@@ -11,7 +11,7 @@ void recur(int cnt, int idx, vector<int> elements) {
         result += elements[(idx + i) % elements.size()];
     }
     
-    if (m[result] == 0) m[result]++;
+    s.insert(result);
 }
 
 int solution(vector<int> elements) {
@@ -23,5 +23,5 @@ int solution(vector<int> elements) {
         }
     }
     
-    return m.size();
+    return s.size();
 }
