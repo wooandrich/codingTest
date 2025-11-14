@@ -14,10 +14,10 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
 
     for (int i=1;i<=n;i++) {
         if (arr[i] > 1) {
-            if (arr[i-1] == 0) {
+            if (arr[i - 1] == 0) {
                 arr[i]--;
-                arr[i-1]++;
-            } else if (arr[i+1] == 0) {
+                arr[i - 1]++;
+            } else if (arr[i + 1] == 0) {
                 arr[i]--;
                 arr[i+1]++;
             }
