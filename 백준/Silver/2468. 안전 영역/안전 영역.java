@@ -1,84 +1,65 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.util.*;
 
-class Main {
-    static int[] dx = {-1, 1, 0, 0};
-    static int[] dy = {0, 0, -1, 1};
-    static int n;
-    static int[][] map;
-    static boolean[][] visited;
+public class Main {
+
+    static int[] dy = {-1, 1, 0, 0};
+    static int[] dx = {0, 0, -1, 1};
+    static int[][] arr;
+    static int[][] visited;
+    static int n, ans, maxVal;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         n = Integer.parseInt(br.readLine());
-        map = new int[n][n];
-        int maxHeight = 0;
+
+        arr = new int[n][n];
 
         for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
-                map[i][j] = Integer.parseInt(st.nextToken());
-                if (maxHeight < map[i][j]) maxHeight = map[i][j];
+                int num = Integer.parseInt(st.nextToken());
+                arr[i][j] = num;
+                maxVal = Math.max(maxVal, num);
             }
         }
 
-        int ans = 0;
-        /**
-         * 1. 모든 지역탐색
-         */
-        for (int height = 0; height < maxHeight + 1; height++) {
-            visited = new boolean[n][n];
-            int cnt = 0;
+
+        for (int depth = 0; depth <= maxVal; depth++) {
+            visited = new int[n][n];
+            int result = 0;
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    // 2. 안전 영역 탐색
-                    if (!visited[i][j] && map[i][j] > height) {
-                        cnt += dfs(i, j, height); // 해당 안전 영역 탐색
+                    if (arr[i][j] > depth && visited[i][j] == 0) {
+                        dfs(i, j, depth);
+                        result++;
                     }
                 }
             }
-            ans = Math.max(ans, cnt);
+            ans = Math.max(ans, result);
         }
-
         System.out.println(ans);
 
 
 
-
-
-
-
-
     }
 
-    static int dfs(int x, int y, int height) {
-        visited[x][y] = true;
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
+    static void dfs(int y, int x, int depth) {
+        visited[y][x] = 1;
 
-            if (nx < 0 || ny < 0 || nx > n - 1 || ny > n - 1) {
-                continue;
-            }
-            if (visited[nx][ny]) {
-                continue;
-            }
-            if (map[nx][ny] > height) {
-                dfs(nx, ny, height);
+        for (int i = 0; i < 4; i++) {
+            int ny = y + dy[i];
+            int nx = x + dx[i];
+
+            if (ny < 0 || ny >= n || nx < 0 || nx >= n) continue;
+            if (arr[ny][nx] > depth && visited[ny][nx] == 0) {
+                dfs(ny, nx, depth);
             }
         }
-        return 1;
     }
-
-
-
 }
-
-
-
-
-
 
