@@ -3,29 +3,20 @@ class Solution {
     public int solution(int[] topping) {
         int answer = 0;
         
-        Map<Integer, Integer> first = new HashMap<>();
-        Set<Integer> second = new HashSet<>();
+        Map<Integer, Integer> front = new HashMap<>();
+        Map<Integer, Integer> back = new HashMap<>();
         
-        for (int i=0;i<topping.length;i++) {
-            if (first.containsKey(topping[i])) {
-                first.put(topping[i], first.get(topping[i]) + 1);
-            } else {
-                first.put(topping[i], 1);
-            }
+        for (int num : topping) {
+            back.merge(num, 1, Integer::sum);
         }
         
-        for (int t : topping) {
-            first.put(t, first.get(t) - 1);
-            second.add(t);
-            if (first.get(t) == 0) {
-                first.remove(t);
-            }
-            if (first.size() == second.size())  answer++;
+        for (int num : topping) {
+            back.put(num, back.get(num) - 1);
+            if (back.get(num) == 0) back.remove(num);
+            front.merge(num, 1, Integer::sum);
             
+            if (front.size() == back.size()) answer++;
         }
-        
-        
-        
         
         return answer;
     }
