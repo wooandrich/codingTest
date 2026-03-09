@@ -1,14 +1,14 @@
 # [level 2] 튜플 - 64065 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/64065) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/64065?language=java) 
 
 ### 성능 요약
 
-메모리: 96 MB, 시간: 81.11 ms
+메모리: 109 MB, 시간: 41.14 ms
 
 ### 구분
 
- > 
+코딩테스트 연습 > 2019 카카오 개발자 겨울 인턴십
 
 ### 채점결과
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 08월 16일 17:36:29
+2026년 03월 09일 15:12:28
 
 ### 문제 설명
 

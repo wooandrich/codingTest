@@ -1,25 +1,24 @@
 import java.util.*;
 class Solution {
     public int[] solution(String s) {
-        List<Integer> ans = new ArrayList<>();
-        int[] answer = {};
-        s = s.substring(2, s.length()-2).replace("},{", "-");
-        String[] a = s.split("-");
-        Arrays.sort(a, new Comparator<String>(){
-            public int compare(String o1, String o2) {
-                return Integer.compare(o1.length(), o2.length());
-            }
-        });
+        List<Integer> answer = new ArrayList<>();
+        Set<String> seen = new HashSet<>();
         
-        for (String x : a) {
-            String[] list = x.split(",");
+        s = s.substring(2, s.length() - 2);
+        String[] arr = s.split("\\},\\{");
+        Arrays.sort(arr, (a, b) -> a.length() - b.length());
+        for (String a : arr) {
+            String[] nums = a.split(",");
             
-            for (String y : list) {
-                int temp = Integer.parseInt(y);
-                if (!ans.contains(temp)) ans.add(temp);
+            for (String n : nums) {
+                if (seen.add(n)) {
+                    answer.add(Integer.parseInt(n));
+                }
             }
         }
         
-        return ans.stream().mapToInt(x -> x).toArray();
+        
+        
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
