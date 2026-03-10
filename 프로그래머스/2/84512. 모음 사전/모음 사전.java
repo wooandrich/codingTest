@@ -1,30 +1,30 @@
 import java.util.*;
+
 class Solution {
-    static List<String> arr;
-    static String[] temp = {"A", "E", "I", "O", "U"};
+    
+    static char[] wordList = {'A', 'E', 'I', 'O', 'U'};
+    static int answer;
+    static List<String> arr = new ArrayList<>();
     public int solution(String word) {
-        int answer = 0;
-        arr = new ArrayList<>();
+        answer = 0;
         
-        dfs("", 0);
+        solve("");
         
-        for (int i=0;i<arr.size();i++){
-            if (word.equals(arr.get(i))) {
-                answer = i;
-                break;
-            }
-        }
+        Collections.sort(arr);
+        answer = arr.indexOf(word);
         
         
-        
-        return answer;
+        return answer + 1;
     }
-    public void dfs(String str, int len){
-        arr.add(str);
-        if (len == 5) return;
+    
+    static void solve(String nowWord) {
         
-        for (int i=0;i<5;i++){
-            dfs(str + temp[i], len + 1);
+        if (nowWord.length() == 5) return;
+        
+        for (int i=0;i<wordList.length;i++) {
+            String nextWord = nowWord + wordList[i];
+            arr.add(nextWord);
+            solve(nextWord);
         }
     }
 }
